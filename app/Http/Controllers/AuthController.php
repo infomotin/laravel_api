@@ -16,4 +16,7 @@ class AuthController extends Controller
         //     'message'=>'Welcome to Laravel API',
         // ],200);
     }
+    public function register(){
+        return $this->ok('Calling Register Api');
+    }
 }
