@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Models\Ticket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,6 +17,11 @@ use Illuminate\Support\Facades\Route;
 */
 Route::post('/login',[AuthController::class,'login']);
 Route::post('/register',[AuthController::class,'register']);
+
+//get all tickets route 
+Route::get('/tickets',function(){
+    return Ticket::all();
+});
 
 Route::get('/', function(){
     return response()->json([
