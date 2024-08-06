@@ -22,10 +22,15 @@ class AuthController extends Controller
         $user = User::firstWhere('email',$request->email);
 
         return $this->ok('Authorize User',[
-            'token'=>$user->createToken('Api User Token'.$user->email)->plainTextToken
+            'token'=>$user->createToken(
+                    'Api User Token'.$user->email,
+                    ['*'],
+                    now()->addDays(30)
+                    
+                    )->plainTextToken
         ],200);
 
-        
+         
 
 
         // return $this->ok($request->get('email'),'Welcome to Laravel API',200);
@@ -39,6 +44,8 @@ class AuthController extends Controller
     }
 
     public function logout(Request $request){
+        // dd($request);
         $request->user()->currentAccessToken()->delete();
+        return $this->ok('LogOut Success');
     }
 }
