@@ -25,7 +25,7 @@ class AuthController extends Controller
             'token'=>$user->createToken(
                     'Api User Token'.$user->email,
                     ['*'],
-                    now()->addDays(30)
+                    now()->addMinute(100)
                     
                     )->plainTextToken
         ],200);
